@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="generator" content="Hugo 0.124.1">
+		<title>Harvest, Yield, and Scalable Tolerant Systems - My insights</title>
+
+		<meta name="description" content="This post presents a summary of the paper Harvest, Yield, and Scalable Tolerant Systemspublished by Eric Brewer &amp; Amando Fox in 1999.">
+
+
+		
+		<link rel="shortcut icon" href="favicon.ico">
+		
+	
+		
+
+
+
+
+<link rel="stylesheet" href="/insights-blog/css/ui.css">
+
+	
+		
+
+		<script defer src="/js/dark-mode.js"></script>
+		<link disabled id="dark-mode-theme" rel="stylesheet" href="/css/dark.css">
+		<link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono|Lato|Raleway">
+
+		
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
+		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+		
+		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"></script>
+		
+		
+	</head>
+
+<body>
+<header class="container no-print">
+	<div class="u-header">
+		<nav class="bar">
+	<ul><li>
+			<a href="/">
+				<img class="icon-text" src="/img/prev.svg"/>
+			</a>
+		</li><li><img class="icon-text" id="dark-mode-toggle" src="/img/moon-regular.svg" alt="Toggle Dark Mode"></a></li><li><a href="/insights-blog/insights/">Insights</a></li></ul>
+</nav>
+
+	</div>
+</header>
+<main class="container">
+
+<article>
+	<header><hgroup id="brand">
+	<h1>Harvest, Yield, and Scalable Tolerant Systems</h1>
+	<h5>
+		
+		<time datetime="2017-10-30 00:00:00 &#43;0000 UTC">30 Oct 2017</time>
+		<span class="no-print">
+			-
+				
+				<a href="/tags/cap">cap</a>
+				
+				<a href="/tags/distributed-systems">distributed-systems</a>
+				<span>
+	</h5>
+	
+</hgroup>
+<hr class="sep" />
+</header>
+	<p><img src="https://cdn-images-1.medium.com/max/300/0*PlLhXyx7tBvL4fVm.png" alt=""></p>
+<p>This post presents a summary of the paper “<a href="https://pdfs.semanticscholar.org/5015/8bc1a8a67295ab7bce0550886a9859000dc2.pdf">Harvest, Yield, and Scalable Tolerant Systems</a>” published by Eric Brewer &amp; Amando Fox in 1999.</p>
+<p>This paper deals with the trade offs between consistency and availability for large systems. It’s very easy to point to CAP and assert that no system can have consistency and availability. However, there is a catch. CAP has been misunderstood in a variety of ways. As Coda Hale explains in his excellent blog post “<a href="https://codahale.com/you-cant-sacrifice-partition-tolerance/">You Can’t Sacrifice Partition Tolerance</a>”:</p>
+<blockquote>
+<p>Of the CAP theorem’s Consistency, Availability, and Partition Tolerance, Partition Tolerance is mandatory in distributed systems. You cannot <strong>not</strong> choose it. Instead of CAP, you should think about your availability in terms of <em>yield</em> (percent of requests answered successfully) and <em>harvest</em> (percent of required data actually included in the responses) and which of these two your system will sacrifice when failures happen.</p>
+</blockquote>
+<p>This paper focuses on increasing the availability of large scale systems by fault toleration, containment &amp; isolation.</p>
+<p>This paper focuses on increasing the availability of large scale systems by fault toleration, containment &amp; isolation.</p>
+<blockquote>
+<p>We assume that clients make queries to servers, in which case there are at least two metrics for correct behavior: yield, which is the probability of completing a request, and harvest, which measures the fraction of the data reflected in the response, i.e. the completeness of the answer to the query.</p>
+</blockquote>
+<p>The two metrics, <strong>harvest</strong> and <strong>yield</strong> can be summarized as follows:</p>
+<ul>
+<li><strong>Harvest</strong> : data in response/total data</li>
+</ul>
+<p><em>Example</em>: If one of the nodes is down in a 100 node cluster, the harvest is 99% for the duration of the fault.</p>
+<ul>
+<li><strong>Yield</strong> : requests completed with success/total number of requests</li>
+</ul>
+<p><em>Note</em>: Yield is different from uptime. Yield specifically deals with the number of requests, not just the time the system wasn’t able to respond to requests.</p>
+<p>The paper argues that while there are certain systems which require perfect responses to queries every single time, there are systems that can tolerate imperfect answers once in a while. To increase the overall availability of our systems, we need to carefully think through the required consistency and availability guarantees it needs to provide.</p>
+<h4 id="trading-harvest-for-yieldprobabilistic-availability">Trading Harvest for Yield — Probabilistic Availability</h4>
+<blockquote>
+<p>Nearly all systems are probabilistic whether they realize it or not. In particular, any system that is 100% available under single faults is probabilistically available overall (since there is a non-zero probability of multiple failures)</p>
+</blockquote>
+<p>Fox and Brewer talk about understanding the probabilistic nature of availability. This helps in understanding and limiting the impact of faults by making decisions about what needs to be available and what kind of faults can the system deal with.</p>
+<p>They outline the linear degradation of harvest in case of multiple node faults. The harvest is directly proportional to the number of nodes that are functioning correctly, hence it’s decreases/increases linearly. Two strategies are suggested for increasing the yield:</p>
+<ol>
+<li>Random distribution of data on the nodes. If one of the nodes goes down, the average-case and worst-case fault behavior doesn’t change. Instead if the distribution isn’t random, then depending type of data, the impact of a fault maybe variable. For example, if only one of the nodes stored info related to a user’s account balance and it goes down, he entire banking system will not be able to work.</li>
+<li>Replicating the most important data. This reduces the impact in case one of the nodes containing a subset of high-priority data goes down and also improves harvest.</li>
+</ol>
+<p>Another notable observation made in the paper is that while it is possible to replicate all of your data, it doesn’t do a lot to improve your harvest/yield while increases the cost of operation substantially. This is because the internet works based on best-in-effort protocols which can never guarantee 100% harvest/yield.</p>
+<h4 id="application-decomposition-and-orthogonal-mechanisms">Application Decomposition and Orthogonal Mechanisms</h4>
+<p>The second strategy focuses on the benefits of orthogonal system design. It starts out stating that large systems are composed of sub systems which independently cannot tolerate failures but fail in a way that allows the entire system to continue functioning with some impact on utility.</p>
+<blockquote>
+<p>The actual benefit is the ability to provision each subsystem’s state management separately, providing strong consistency or persistent state only for the subsystems that need it, not for the entire application. The savings can be significant if only a few small subsystems require the extra complexity.</p>
+</blockquote>
+<p>The paper states that orthogonal components are completely independent of each other having no run time interface to other components except a configuration interface maybe. This allows each individual component to fail independently minimizing its impact on the overall system.</p>
+<blockquote>
+<p>Composition of orthogonal subsystems shifts the burden of checking for possibly harmful interactions from runtime to compile time, and deployment of orthogonal guard mechanisms improves robustness for the runtime interactions that do occur, by providing improved fault containment.</p>
+</blockquote>
+<p>Over all, the goal of this paper was to motivate research in the field of designing fault-tolerant and highly available large scale systems. Also, to think carefully about the consistency and availability guarantees the application needs to provide and the trade offs it is capable of making in terms of harvest vs yield.</p>
+
+</article>
+<nav class="no-print post-nav">
+
+
+</nav>
+
+
+
+
+
+			<hr class="sep" />
+		</main>
+		<footer class="container no-print">
+			<div class="u-footer">
+				
+<a href="mailto:hi@dj.com"><img class="icon-social" src="/img/email.svg" alt="Email Me!"/></a>
+
+
+<a href="https://github.com/is-this-echo/"><img class="icon-social" src="/img/github.svg" alt="Github"/></a>
+
+
+<a href="https://twitter.com/fd"><img class="icon-social" src="/img/twitter.svg" alt="Twitter"/></a>
+
+<a href="https://is-this-echo.github.io/insights-blog/index.xml" target="_blank"><img class="icon-social" src="/img/feed.svg" alt="Feed"></a>
+
+
+				<p>
+					
+					Theme used: <a href="https://github.com/yursan9/manis-hugo-theme">Manis</a><br>
+					
+					
+					&copy; 2017 <a href='https://dcfd.com'> Debjyoti Ghosh </a>
+					
+					
+					| <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">License</a>
+					
+				</p>
+				
+				<a href="#brand">
+					<img class="icon-text" src="/img/toup.svg" alt="To Up"/>
+					<span>Back to Up</span>
+				</a>
+				
+			</div>
+		</footer>
+		
+		<script>hljs.initHighlightingOnLoad();</script>
+		
+	</body>
+</html>
+

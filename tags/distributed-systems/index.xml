@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Distributed-Systems on My insights</title>
+    <link>https://is-this-echo.github.io/insights-blog/tags/distributed-systems/</link>
+    <description>Recent content in Distributed-Systems on My insights</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&amp;copy; 2017 &lt;a href=&#39;https://dcfd.com&#39;&gt; Debjyoti Ghosh &lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 30 Oct 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://is-this-echo.github.io/insights-blog/tags/distributed-systems/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Harvest, Yield, and Scalable Tolerant Systems</title>
+      <link>https://is-this-echo.github.io/insights-blog/insights/mypost/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
+      <guid>https://is-this-echo.github.io/insights-blog/insights/mypost/</guid>
+      <description>This post presents a summary of the paper “Harvest, Yield, and Scalable Tolerant Systems” published by Eric Brewer &amp;amp; Amando Fox in 1999.&#xA;This paper deals with the trade offs between consistency and availability for large systems. It’s very easy to point to CAP and assert that no system can have consistency and availability. However, there is a catch. CAP has been misunderstood in a variety of ways. As Coda Hale explains in his excellent blog post “You Can’t Sacrifice Partition Tolerance”:</description>
+    </item>
+  </channel>
+</rss>
