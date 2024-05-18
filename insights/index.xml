@@ -1,20 +1,66 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Insights on My insights</title>
-    <link>https://is-this-echo.github.io/insights-blog/insights/</link>
-    <description>Recent content in Insights on My insights</description>
+    <title>My Insights</title>
+    <link>/insights/</link>
+    <description>Recent posts by Daniel</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <copyright>&amp;copy; 2017 &lt;a href=&#39;https://dcfd.com&#39;&gt; Debjyoti Ghosh &lt;/a&gt;</copyright>
+    <copyright>&amp;copy; 2022 &lt;a href=&#39;https://dcfd.com&#39;&gt; Debjyoti Ghosh &lt;/a&gt;</copyright>
     <lastBuildDate>Mon, 30 Oct 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://is-this-echo.github.io/insights-blog/insights/index.xml" rel="self" type="application/rss+xml" />
+    
+        <atom:link href="/insights/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Harvest, Yield, and Scalable Tolerant Systems</title>
-      <link>https://is-this-echo.github.io/insights-blog/insights/mypost/</link>
+      <link>/insights/mypost/</link>
       <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
-      <guid>https://is-this-echo.github.io/insights-blog/insights/mypost/</guid>
-      <description>This post presents a summary of the paper “Harvest, Yield, and Scalable Tolerant Systems” published by Eric Brewer &amp;amp; Amando Fox in 1999.&#xA;This paper deals with the trade offs between consistency and availability for large systems. It’s very easy to point to CAP and assert that no system can have consistency and availability. However, there is a catch. CAP has been misunderstood in a variety of ways. As Coda Hale explains in his excellent blog post “You Can’t Sacrifice Partition Tolerance”:</description>
+      
+      <guid>/insights/mypost/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/300/0*PlLhXyx7tBvL4fVm.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;This post presents a summary of the paper “&lt;a href=&#34;https://pdfs.semanticscholar.org/5015/8bc1a8a67295ab7bce0550886a9859000dc2.pdf&#34;&gt;Harvest, Yield, and Scalable Tolerant Systems&lt;/a&gt;” published by Eric Brewer &amp;amp; Amando Fox in 1999.&lt;/p&gt;
+&lt;p&gt;This paper deals with the trade offs between consistency and availability for large systems. It’s very easy to point to CAP and assert that no system can have consistency and availability. However, there is a catch. CAP has been misunderstood in a variety of ways. As Coda Hale explains in his excellent blog post “&lt;a href=&#34;https://codahale.com/you-cant-sacrifice-partition-tolerance/&#34;&gt;You Can’t Sacrifice Partition Tolerance&lt;/a&gt;”:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Of the CAP theorem’s Consistency, Availability, and Partition Tolerance, Partition Tolerance is mandatory in distributed systems. You cannot &lt;strong&gt;not&lt;/strong&gt; choose it. Instead of CAP, you should think about your availability in terms of &lt;em&gt;yield&lt;/em&gt; (percent of requests answered successfully) and &lt;em&gt;harvest&lt;/em&gt; (percent of required data actually included in the responses) and which of these two your system will sacrifice when failures happen.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This paper focuses on increasing the availability of large scale systems by fault toleration, containment &amp;amp; isolation.&lt;/p&gt;
+&lt;p&gt;This paper focuses on increasing the availability of large scale systems by fault toleration, containment &amp;amp; isolation.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We assume that clients make queries to servers, in which case there are at least two metrics for correct behavior: yield, which is the probability of completing a request, and harvest, which measures the fraction of the data reflected in the response, i.e. the completeness of the answer to the query.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The two metrics, &lt;strong&gt;harvest&lt;/strong&gt; and &lt;strong&gt;yield&lt;/strong&gt; can be summarized as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Harvest&lt;/strong&gt; : data in response/total data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Example&lt;/em&gt;: If one of the nodes is down in a 100 node cluster, the harvest is 99% for the duration of the fault.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Yield&lt;/strong&gt; : requests completed with success/total number of requests&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: Yield is different from uptime. Yield specifically deals with the number of requests, not just the time the system wasn’t able to respond to requests.&lt;/p&gt;
+&lt;p&gt;The paper argues that while there are certain systems which require perfect responses to queries every single time, there are systems that can tolerate imperfect answers once in a while. To increase the overall availability of our systems, we need to carefully think through the required consistency and availability guarantees it needs to provide.&lt;/p&gt;
+&lt;h4 id=&#34;trading-harvest-for-yieldprobabilistic-availability&#34;&gt;Trading Harvest for Yield — Probabilistic Availability&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Nearly all systems are probabilistic whether they realize it or not. In particular, any system that is 100% available under single faults is probabilistically available overall (since there is a non-zero probability of multiple failures)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Fox and Brewer talk about understanding the probabilistic nature of availability. This helps in understanding and limiting the impact of faults by making decisions about what needs to be available and what kind of faults can the system deal with.&lt;/p&gt;
+&lt;p&gt;They outline the linear degradation of harvest in case of multiple node faults. The harvest is directly proportional to the number of nodes that are functioning correctly, hence it’s decreases/increases linearly. Two strategies are suggested for increasing the yield:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Random distribution of data on the nodes. If one of the nodes goes down, the average-case and worst-case fault behavior doesn’t change. Instead if the distribution isn’t random, then depending type of data, the impact of a fault maybe variable. For example, if only one of the nodes stored info related to a user’s account balance and it goes down, he entire banking system will not be able to work.&lt;/li&gt;
+&lt;li&gt;Replicating the most important data. This reduces the impact in case one of the nodes containing a subset of high-priority data goes down and also improves harvest.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Another notable observation made in the paper is that while it is possible to replicate all of your data, it doesn’t do a lot to improve your harvest/yield while increases the cost of operation substantially. This is because the internet works based on best-in-effort protocols which can never guarantee 100% harvest/yield.&lt;/p&gt;
+&lt;h4 id=&#34;application-decomposition-and-orthogonal-mechanisms&#34;&gt;Application Decomposition and Orthogonal Mechanisms&lt;/h4&gt;
+&lt;p&gt;The second strategy focuses on the benefits of orthogonal system design. It starts out stating that large systems are composed of sub systems which independently cannot tolerate failures but fail in a way that allows the entire system to continue functioning with some impact on utility.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The actual benefit is the ability to provision each subsystem’s state management separately, providing strong consistency or persistent state only for the subsystems that need it, not for the entire application. The savings can be significant if only a few small subsystems require the extra complexity.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The paper states that orthogonal components are completely independent of each other having no run time interface to other components except a configuration interface maybe. This allows each individual component to fail independently minimizing its impact on the overall system.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Composition of orthogonal subsystems shifts the burden of checking for possibly harmful interactions from runtime to compile time, and deployment of orthogonal guard mechanisms improves robustness for the runtime interactions that do occur, by providing improved fault containment.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Over all, the goal of this paper was to motivate research in the field of designing fault-tolerant and highly available large scale systems. Also, to think carefully about the consistency and availability guarantees the application needs to provide and the trade offs it is capable of making in terms of harvest vs yield.&lt;/p&gt;
+</description>
     </item>
+    
   </channel>
 </rss>

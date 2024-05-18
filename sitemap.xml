@@ -2,22 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://is-this-echo.github.io/insights-blog/tags/cap/</loc>
+    <loc>/tags/cap/</loc>
     <lastmod>2017-10-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://is-this-echo.github.io/insights-blog/tags/distributed-systems/</loc>
+    <loc>/tags/distributed-systems/</loc>
     <lastmod>2017-10-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://is-this-echo.github.io/insights-blog/insights/mypost/</loc>
+    <loc>/insights/mypost/</loc>
     <lastmod>2017-10-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://is-this-echo.github.io/insights-blog/insights/</loc>
+    <loc>/insights/</loc>
     <lastmod>2017-10-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://is-this-echo.github.io/insights-blog/</loc>
+    <loc>/</loc>
     <lastmod>2017-10-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://is-this-echo.github.io/insights-blog/tags/</loc>
+    <loc>/tags/</loc>
     <lastmod>2017-10-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/about/</loc>
   </url>
 </urlset>
