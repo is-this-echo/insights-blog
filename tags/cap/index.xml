@@ -1,22 +1,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>My Insights</title>
-    <link>/tags/cap/</link>
+    <link>//localhost:1313/tags/cap/</link>
     <description>Recent posts by Daniel</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2022 &lt;a href=&#39;https://dcfd.com&#39;&gt; Debjyoti Ghosh &lt;/a&gt;</copyright>
     <lastBuildDate>Mon, 30 Oct 2017 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/tags/cap/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="//localhost:1313/tags/cap/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Harvest, Yield, and Scalable Tolerant Systems</title>
-      <link>/insights/mypost/</link>
+      <link>//localhost:1313/insights/mypost/</link>
       <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>/insights/mypost/</guid>
+      <guid>//localhost:1313/insights/mypost/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/300/0*PlLhXyx7tBvL4fVm.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;This post presents a summary of the paper “&lt;a href=&#34;https://pdfs.semanticscholar.org/5015/8bc1a8a67295ab7bce0550886a9859000dc2.pdf&#34;&gt;Harvest, Yield, and Scalable Tolerant Systems&lt;/a&gt;” published by Eric Brewer &amp;amp; Amando Fox in 1999.&lt;/p&gt;
 &lt;p&gt;This paper deals with the trade offs between consistency and availability for large systems. It’s very easy to point to CAP and assert that no system can have consistency and availability. However, there is a catch. CAP has been misunderstood in a variety of ways. As Coda Hale explains in his excellent blog post “&lt;a href=&#34;https://codahale.com/you-cant-sacrifice-partition-tolerance/&#34;&gt;You Can’t Sacrifice Partition Tolerance&lt;/a&gt;”:&lt;/p&gt;

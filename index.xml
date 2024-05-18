@@ -1,31 +1,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>My Insights</title>
-    <link>/</link>
+    <link>//localhost:1313/</link>
     <description>Recent posts by Daniel</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2022 &lt;a href=&#39;https://dcfd.com&#39;&gt; Debjyoti Ghosh &lt;/a&gt;</copyright>
     <lastBuildDate>Mon, 30 Oct 2017 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Insights</title>
-      <link>/insights/</link>
+      <link>//localhost:1313/insights/</link>
       <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>/insights/</guid>
+      <guid>//localhost:1313/insights/</guid>
       <description></description>
     </item>
     
     <item>
       <title>About</title>
-      <link>/about/</link>
+      <link>//localhost:1313/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/about/</guid>
+      <guid>//localhost:1313/about/</guid>
       <description>&lt;p&gt;Hi there, I&amp;rsquo;m &lt;!-- raw HTML omitted --&gt; Shubheksha&lt;!-- raw HTML omitted --&gt;! I currently work as a software engineer at Microsoft. I like computers&amp;hellip;a lot. I enjoy learning about systems in my free time, I find distributed systems in particular very fascinating. So I decided to dig deeper on my own, which is the reason I started this blog - to consume the vast amount of existing literature already out there. I enjoy reading academic papers and summarizing them to help make the content more digestable. Apart from computers, I really enjoy reading and writing.&lt;/p&gt;
 &lt;p&gt;If you have any questions or just want to chat, you can reach out to me on &lt;!-- raw HTML omitted --&gt; Twitter &lt;!-- raw HTML omitted --&gt; or shoot me an
 &lt;!-- raw HTML omitted --&gt;email&lt;!-- raw HTML omitted --&gt;.&lt;/p&gt;
